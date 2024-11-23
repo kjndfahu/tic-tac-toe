@@ -10,5 +10,10 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:postgres@localhost:5555/mydb?schema=public"
+}
+
+model Game {
+  id   String @id @default(cuid())
+  name String
 }
