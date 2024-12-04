@@ -10,10 +10,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:postgres@localhost:5555/mydb?schema=public"
+  url      = "postgresql://postgres:postgres@localhost:5433/mydb?schema=public"
 }
 
 model Game {
   id   String @id @default(cuid())
-  name String
+  status GameStatus
+  players User[] @relation("games")
+  field Json?
+  winner User? @relation(fields: [winnerId], references: [id])
+  winnerId String?
+  gameOverAt String?
+}
+
+model User{
+  id String @id @default(cuid())
+  login String
+  rating Int
+  passwordHash String
+  salt String @default("")
+  games Game[] @relation("games")
+  winnerGames Game[]
+}
+
+enum GameStatus {
+  idle
+  inProgress
+  gameOver
+  gameOverDraw
 }
