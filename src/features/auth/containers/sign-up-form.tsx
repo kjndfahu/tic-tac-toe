@@ -8,6 +8,7 @@ import { BottomLink } from '@/features/auth/ui/bottom-link'
 import { AuthFormLayout } from '@/features/auth/ui/auth-form-layout'
 import { useActionState } from '@/shared/lib/react'
 import { signUpAction, SignUpFormState } from '../actions/sign-up'
+import { routes } from '@/kernel/routes'
 
 
 export function SignUpForm() {
@@ -22,7 +23,7 @@ export function SignUpForm() {
     fields={<AuthFields {...formState}/>}
     actions={<SubmitButton isPending={isPending}>Sign Up</SubmitButton>} 
     error={<ErrorMessage error={formState.errors?._errors}/>}
-    link={<BottomLink text="Already have an account?" linkText="Sign in" url="/sign-in"/>} 
+    link={<BottomLink text="Already have an account?" linkText="Sign in" url={routes.signIn()}/>} 
     />);
       
 

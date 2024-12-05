@@ -1,4 +1,5 @@
 import { sessionService } from "@/enteties/user/server"
+import { routes } from "@/kernel/routes";
 import { Button } from "@/shared/ui/button"
 import { redirect } from "next/navigation";
 
@@ -15,7 +16,7 @@ export default async function({children}: {children: React.ReactNode}){
                     <form action={async () => {
                         "use server";
                         sessionService.deleteSession()
-                        redirect("/sign-in")
+                        redirect(routes.signIn())
                     }}>
                         <Button>Sign out</Button>
                     </form>
