@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 import { z } from "zod";
 
-export type SignUnFormState = {
+export type SignUpFormState = {
   formData?: FormData;
   errors?: {
     login?: string;
@@ -22,9 +22,9 @@ const formDataSchema = z.object({
 });
 
 export const signUpAction = async (
-  state: SignUnFormState,
+  state: SignUpFormState,
   formData: FormData,
-): Promise<SignUnFormState> => {
+): Promise<SignUpFormState> => {
   const data = Object.fromEntries(formData.entries());
   const result = formDataSchema.safeParse(data);
 
